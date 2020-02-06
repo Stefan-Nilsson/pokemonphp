@@ -24,40 +24,40 @@ $evolutionChainApi = ($dataSpecies['evolution_chain']['url']);
 $formDataChain = file_get_contents($evolutionChainApi);
 $dataChain = json_decode($formDataChain, true);
 
-if (count($dataChain) > 3) {
-    $dataChainA = file_get_contents('')
-        $dataChainB =
-            $dataChainC =
-                $dataChainD =
-                    $dataChainE =
-                        $dataChainF =
-                            $dataChainG =
-                                $dataChainH =
+$pokemonChainOne = ($dataChain['chain']['species']['name']);
+$formDataChainOne = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $pokemonChainOne);
+$dataChainOne = json_decode($formDataChainOne, true);
+
+
+
+$arrayChainTwo = [];
+
+/*
+foreach ($dataChain['chain']['evolves_to'] as $arrayChainTwo) {
+    array_push($arrayChainTwo['species']['name']);
+}
+foreach ($dataChain['chain']['evolves_to']['0']['evolves_to'] as $arrayChainThree) {
+    array_push($arrayChainThree['species']['name']);
 }
 
-else {
-    $pokemonChainOne = ($dataChain['chain']['species']['name']);
-    $pokemonChainTwo = ($dataChain['chain']['evolves_to']['0']['species']['name']);
-    $pokemonChainThree = ($dataChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']);
 
-    $formDataChainOne = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $pokemonChainOne);
-    $formDataChainTwo = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $pokemonChainTwo);
-    $formDataChainThree = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $pokemonChainThree);
-
-    $dataChainOne = json_decode($formDataChainOne, true);
+foreach ($arrayChainTwo as $inputChainTwo) {
+    $formDataChainTwo = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainTwo);
     $dataChainTwo = json_decode($formDataChainTwo, true);
+}
+foreach ($arrayChainTwo as $inputChainThree) {
+    $formDataChainThree = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainThree);
     $dataChainThree = json_decode($formDataChainThree, true);
 }
+*/
+
+//$pixies = array_column($dataChainTwo, 'last_name', 'id');
+
+
+
 
 $moves = $data["moves"];
 $randMoves = array_rand($moves, 4);
-
-
-//$apiInput = $_GET["apivalue"];
-//echo $apiInput;
-
-////   echo($name) . "<br>";
-// }
 
 
 ?>
@@ -128,17 +128,15 @@ $randMoves = array_rand($moves, 4);
 
         <div class="d-flex justify-content-between p-3 m-3 bg-danger" id="chain1">
             <div>
-                <h2 id="nameChain1"><?php echo($dataChain['chain']['species']['name']);
-                    echo($dataChain['chain']['evolves_to']['0']['species']['name']);
-                    echo($dataChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']);
+                <h2 id="nameChain1"><?php //echo($dataChain['chain']['species']['name']);
                     ?></h2>
-                <img alt="" id="spriteChain1" src="<?php echo ($dataChainOne["sprites"]["front_default"]);?>">
+                <img alt="" id="spriteChain1" src="<?php // echo($dataChainOne["sprites"]["front_default"]); ?>">
             </div>
             <div>
 
                 <div id="chain2">
                     <h2 id="nameChain2"></h2>
-                    <img alt="" id="spriteChain2" src="<?php echo ($dataChainTwo["sprites"]["front_default"]);?>">
+                    <img alt="" id="spriteChain2" src="<?php  ?>">
                 </div>
             </div>
 
@@ -146,7 +144,7 @@ $randMoves = array_rand($moves, 4);
 
                 <div id="chain3">
                     <h2 id="nameChain3"></h2>
-                    <img alt="" id="spriteChain3" src="<?php echo ($dataChainThree["sprites"]["front_default"]);?>">
+                    <img alt="" id="spriteChain3" src="<?php ?>">
                 </div>
             </div>
 
