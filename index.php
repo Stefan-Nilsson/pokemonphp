@@ -4,18 +4,23 @@ declare(strict_types=1);
 ini_set('display_errors', "1");
 ini_set('display_startup_errors', "1");
 error_reporting(E_ALL);
+
+
 // evolution-chain/1/
 
 if (empty($_GET['subject'])) {
+
     $formData = file_get_contents('https://pokeapi.co/api/v2/pokemon/1');
-} else {
+    $formDataSpecies = file_get_contents('https://pokeapi.co/api/v2/pokemon-species/1');
+}
+else {
 
     $formData = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $_GET['subject']);
     $formDataSpecies = file_get_contents('https://pokeapi.co/api/v2/pokemon-species/' . $_GET['subject']);
 
-
-    //$formDataEvolution = file_get_contents('https://pokeapi.co/api/v2/pokemon-evolution/');
 }
+    //$formDataEvolution = file_get_contents('https://pokeapi.co/api/v2/pokemon-evolution/');
+
 
 
 $data = json_decode($formData, true);
@@ -29,27 +34,39 @@ $formDataChainOne = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $po
 $dataChainOne = json_decode($formDataChainOne, true);
 
 
-
 $arrayChainTwo = [];
+$arrayChainTwoFinal = [];
 
-/*
 foreach ($dataChain['chain']['evolves_to'] as $arrayChainTwo) {
-    array_push($arrayChainTwo['species']['name']);
+    array_push($arrayChainTwoFinal, $arrayChainTwo['species']['name']);
 }
-foreach ($dataChain['chain']['evolves_to']['0']['evolves_to'] as $arrayChainThree) {
-    array_push($arrayChainThree['species']['name']);
-}
+echo ($arrayChainTwoFinal);
 
 
-foreach ($arrayChainTwo as $inputChainTwo) {
-    $formDataChainTwo = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainTwo);
-    $dataChainTwo = json_decode($formDataChainTwo, true);
+$arrayChainThree = [];
+$arrayChainThreeFinal = [];
+
+foreach ($dataChain['chain']['evolves_to'] as $arrayChainThree) {
+    array_push($arrayChainThreeFinal, $arrayChainThree['species']['name']);
 }
-foreach ($arrayChainTwo as $inputChainThree) {
-    $formDataChainThree = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainThree);
-    $dataChainThree = json_decode($formDataChainThree, true);
-}
-*/
+echo ($arrayChainThreeFinal);
+
+
+
+// foreach ($dataChain['chain']['evolves_to']['0']['evolves_to'] as $arrayChainThree) {
+   // array_push($arrayChainThree['species']['name']);
+// }
+
+
+// foreach ($arrayChainTwo as $inputChainTwo) {
+    // $formDataChainTwo = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainTwo);
+   // $dataChainTwo = json_decode($formDataChainTwo, true);
+
+// foreach ($arrayChainTwo as $inputChainThree) {
+   // $formDataChainThree = file_get_contents('https://pokeapi.co/api/v2/pokemon/' . $inputChainThree);
+    // $dataChainThree = json_decode($formDataChainThree, true);
+// }
+
 
 //$pixies = array_column($dataChainTwo, 'last_name', 'id');
 
@@ -81,7 +98,7 @@ $randMoves = array_rand($moves, 4);
 
 
     <form name="form" action="" method="get">
-        <input type="text" name="subject" id="azeaze" value="pikachu">
+        <input type="text" name="subject" id="azeaze" value="">
     </form>
 
 
